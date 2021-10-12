@@ -2,6 +2,7 @@ import org.gradle.api.tasks.testing.logging.TestLogEvent
 
 plugins {
     java
+    jacoco
 }
 
 repositories {
@@ -23,7 +24,16 @@ configure<JavaPluginExtension> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+
     testLogging {
         events = setOf(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
     }
-}
+
+    finalizedBy(tasks.withType<JacocoReport>())
+ }
+
+ tasks.withType<JacocoReport> {
+     reports {
+         xml.required.set(true)
+     }
+ }
