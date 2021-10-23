@@ -30,10 +30,10 @@ tasks.withType<Test> {
     }
 
     finalizedBy(tasks.withType<JacocoReport>())
- }
+}
 
- tasks.withType<JacocoReport> {
-     reports {
-         xml.required.set(true)
-     }
- }
+tasks.withType<JacocoReport> {
+    reports {
+        xml.required.set(true)
+    }
+}
