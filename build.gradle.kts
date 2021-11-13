@@ -17,12 +17,13 @@ dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter", properties["version.junit"].toString())
 }
 
-configure<JavaPluginExtension> {
-    sourceCompatibility = JavaVersion.VERSION_17
-    targetCompatibility = JavaVersion.VERSION_17
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(17))
+    }
 }
 
-tasks.withType<Test> {
+tasks.test {
     useJUnitPlatform()
 
     testLogging {
