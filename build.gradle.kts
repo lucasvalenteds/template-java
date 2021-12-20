@@ -25,16 +25,8 @@ java {
 
 tasks.test {
     useJUnitPlatform()
-
     testLogging {
         events = setOf(TestLogEvent.PASSED, TestLogEvent.FAILED, TestLogEvent.SKIPPED)
     }
-
     finalizedBy(tasks.withType<JacocoReport>())
-}
-
-tasks.withType<JacocoReport> {
-    reports {
-        xml.required.set(true)
-    }
 }
